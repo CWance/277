@@ -11,8 +11,14 @@ import java.util.Scanner;
  */
 public class Map {
 
+	/**
+	 * A Char 2D array that holds the map
+	 */
 	private char[][] map;
 
+	/**
+	 * A Boolean 2D array that shows if the Hero moved to this spaace yet
+	 */
 	private boolean[][] revealed;
 
 	/**

@@ -8,6 +8,9 @@ import java.util.Random;
  */
 class Enemy extends Entity {
 
+	/**
+	 * An Item held by the Enemy
+	 */
 	private Item item;
 
 	/**

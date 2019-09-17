@@ -5,6 +5,9 @@
  *
  */
 public class Item {
+	/**
+	 * A String that holds the name of the item
+	 */
 	private String name;
 
 	/**

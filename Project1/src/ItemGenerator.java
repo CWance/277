@@ -10,6 +10,9 @@ import java.util.Scanner;
  *
  */
 public class ItemGenerator {
+	/**
+	 * An ArrayList of Items that come from a file
+	 */
 	private ArrayList<Item> itemList = new ArrayList<Item>();
 
 	/**

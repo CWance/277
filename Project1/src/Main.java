@@ -29,8 +29,7 @@ public class Main {
 		} else if (e.getHP() <= 0) {
 			System.out.println("You received a " + e.getItem().getName() + " from the enemy.");
 			h.pickUpItem(e.getItem());
-			m.removeCharAtLoc(h.location);
-			h.map.removeCharAtLoc(h.location);
+			m.removeCharAtLoc(h.getLocation());
 			return true;
 		} else {
 			return true;
@@ -111,7 +110,7 @@ public class Main {
 	 */
 	public static boolean itemRoom(Hero h, Map m, ItemGenerator ig) {
 		Item i = ig.generateItem();
-		h.map.removeCharAtLoc(h.location);
+		m.removeCharAtLoc(h.getLocation());
 		return h.pickUpItem(i);
 
 	}
@@ -121,10 +120,6 @@ public class Main {
 		System.out.println("What is your name?");
 		Map map = new Map();
 		Hero hero = new Hero(in.nextLine(), map);
-		hero.increaseLevel();
-		hero.increaseLevel();
-		hero.increaseLevel();
-		hero.increaseLevel();
 		map.loadMap(hero.getLevel());
 		ItemGenerator ig = new ItemGenerator();
 		boolean cont = true;
@@ -164,20 +159,15 @@ public class Main {
 						System.out.println("... and you go to the next room");
 						hero.increaseLevel();
 						System.out.println(hero.getName() + " leveled up! \nYou are now level " + hero.getLevel());
-						hero.map.loadMap(hero.getLevel());
 						map.loadMap(hero.getLevel());
 					} else if (hero.hasHolocron()) {
 						System.out.println("You use the Force");
-						Random force = new Random();
-						if (force.nextInt(20) + hero.getLevel() > 20) {
-
-							System.out.println("... and you go to the next room");
-							hero.increaseLevel();
-							hero.map.loadMap(hero.getLevel());
-						} else {
-
-							System.out.println("... But you failed to open the door");
-						}
+						hero.removeItem("Holocron");
+						System.out.println("... and you go to the next room");
+						hero.increaseLevel();
+						System.out.println(hero.getName() + " leveled up! \nYou are now level " + hero.getLevel());
+						map.loadMap(hero.getLevel());
+						
 					}
 				} else if (there == 'n') {
 					System.out.println("There was nothing here.");

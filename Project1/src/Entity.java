@@ -5,9 +5,24 @@
  *
  */
 abstract class Entity {
+	/**
+	 * A String that holds the name of the Entity
+	 */
 	private String name;
+	
+	/**
+	 * An Integer that holds the Entity's level
+	 */
 	private int level;
+	
+	/**
+	 * An Integer that holds the Entity's Max Hp
+	 */
 	private int maxHp;
+	
+	/**
+	 * An Integer that holds the Entity's current Hp
+	 */
 	private int hp;
 
 	/**

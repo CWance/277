@@ -10,8 +10,14 @@ import java.util.Scanner;
  *
  */
 public class EnemyGenerator {
-	// The list of Enemy objects
+	/**
+	 * The ArrayList of Enemy objects from a file
+	 */
 	private ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
+	
+	/**
+	 * An ItemGenerator that gives an enemy an item
+	 */
 	private ItemGenerator ig;
 
 	/**

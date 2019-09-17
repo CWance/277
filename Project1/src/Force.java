@@ -12,16 +12,19 @@ public interface Force {
 
 	/**
 	 * Used to use forcePush Attack
+	 * @return int
 	 */
 	public int forcePush();
 
 	/**
 	 * Used to use forceChoke Attack
+	 * @return int
 	 */
 	public int forceChoke();
 
 	/**
 	 * Used to use forceSlam Attack
+	 * @return int
 	 */
 	public int forceSlam();
 }

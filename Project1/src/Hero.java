@@ -9,9 +9,20 @@ import java.util.Random;
  *
  */
 public class Hero extends Entity implements Force {
+	/**
+	 * An ArrayList of Items the Hero holds
+	 */
 	private ArrayList<Item> items;
-	public Map map;
-	public Point location;
+	
+	/**
+	 * The map your hero is in
+	 */
+	private Map map;
+	
+	/**
+	 * A point that holds the location of the hero
+	 */
+	private Point location;
 
 	/**
 	 * Generates the Hero Entity
@@ -70,6 +81,7 @@ public class Hero extends Entity implements Force {
 					break;
 				}
 				}
+				removeItem("Holocron");
 				break;
 			}
 
@@ -175,22 +187,6 @@ public class Hero extends Entity implements Force {
 	}
 
 	/**
-	 * 
-	 * @param i
-	 * @return
-	 */
-	public Item removeItem(Item i) {
-		Item e = items.get(0);
-		for (int j = 0; j < getNumItems(); j++) {
-			if (i.getName().equals(items.get(j).getName())) {
-				e = items.get(j);
-				items.remove(i);
-			}
-		}
-		return e;
-	}
-
-	/**
 	 * Removes an item using a String n
 	 * 
 	 * @param n String name of the item
@@ -205,7 +201,18 @@ public class Hero extends Entity implements Force {
 		}
 		return i;
 	}
-
+	
+	/**
+	 * Removes an item using a String n
+	 * 
+	 * @param n String name of the item
+	 * @return Item
+	 */
+	public Item removeItem(int index) {
+		Item i = items.get(index);
+		items.remove(index);
+		return i;
+	}	
 	/**
 	 * Removes a piece of armor
 	 * 
@@ -216,11 +223,9 @@ public class Hero extends Entity implements Force {
 		int i = 0;
 		String armor = " ";
 		while (i < items.size() && found) {
-			if (items.get(i).getName().equals("Helmet") || items.get(i).getName().equals("Shield")
-					|| items.get(i).getName().equals("Chestplate")) {
+			if (items.get(i).getName().equals("Helmet") || items.get(i).getName().equals("Shield") || items.get(i).getName().equals("Chestplate")) {
 				armor = items.get(i).getName();
-				items.remove(i);
-				found = false;
+				removeItem(i);
 			}
 			i++;
 		}
@@ -362,5 +367,13 @@ public class Hero extends Entity implements Force {
 		}
 
 		return there;
+	}
+	
+	/**
+	 * Gets the location of the Hero
+	 * @return Point location
+	 */
+	public Point getLocation() {
+		return location;
 	}
 }
