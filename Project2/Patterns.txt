@@ -1,0 +1,15 @@
+s,p,r,r:6
+r,s,p,p:5
+r,p,p,p:1
+s,s,s,p:1
+p,r,s,s:5
+s,s,r,s:1
+s,s,s,s:8
+p,r,p,s:1
+p,p,s,p:1
+p,p,p,r:1
+r,r,r,s:1
+r,r,r,r:9
+p,p,p,p:4
+p,s,s,p:1
+s,r,r,s:1
