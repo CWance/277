@@ -6,18 +6,10 @@ import java.util.Random;
  * @author Christian Wance 012306864
  *
  */
-class ForceEnemy extends Enemy implements Force {
-	/**
-	 * Generates a ForceEnemy Entity
-	 * 
-	 * @param n The ForceEnemy name
-	 * @param l The ForceEnemy level
-	 * @param m The ForceEnemy maxHp
-	 * @param i The ForceEnemy held item
-	 */
-	ForceEnemy(String n, int l, int m, Item i) {
-		super(n, l, m, i);
-	}
+class ForceUser extends EnemyDecorator implements Force {
+
+	ForceUser(Enemy e) {
+		super(e, " Force User", 2);}
 
 	/**
 	 * Override the attack function found in Entity

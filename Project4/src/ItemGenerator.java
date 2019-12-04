@@ -9,17 +9,20 @@ import java.util.Scanner;
  * @author Christian Wance 012306864
  *
  */
-public class ItemGenerator {
+public class ItemGenerator{
 	/**
 	 * An ArrayList of Items that come from a file
 	 */
+	
 	private ArrayList<Item> itemList = new ArrayList<Item>();
-
+	//An instance of Item 
+	private static ItemGenerator instance = null;
+	
 	/**
 	 * Creates the ItemGenerator object, populates the itemList with data from
 	 * ItemList.txt
 	 */
-	ItemGenerator() {
+	private ItemGenerator() {
 		try {
 			Scanner read = new Scanner(new File("ItemList.txt"));
 			do {
@@ -31,6 +34,13 @@ public class ItemGenerator {
 			System.out.println("File was not found");
 		}
 	}
+	public static ItemGenerator getInstance( ) {
+		if( instance == null ) {
+			instance = new ItemGenerator( );
+		}
+		return instance;
+	}
+		
 
 	/**
 	 * Picks an Item randomly from the itemList and returns it
@@ -39,7 +49,8 @@ public class ItemGenerator {
 	 */
 	Item generateItem() {
 		Random randomItem = new Random();
-		Item item = itemList.get(randomItem.nextInt(itemList.size()));
+		Item item = itemList.get(randomItem.nextInt(itemList.size())).clone();
 		return item;
 	}
+	
 }

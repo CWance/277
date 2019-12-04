@@ -10,11 +10,7 @@ import java.util.Scanner;
  *
  */
 public class EnemyGenerator {
-	/**
-	 * The ArrayList of Enemy objects from a file
-	 */
-	private ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
-	
+	private static EnemyGenerator instance = null;
 	/**
 	 * An ItemGenerator that gives an enemy an item
 	 */
@@ -24,24 +20,15 @@ public class EnemyGenerator {
 	 * Creates the EnemyGenerator object, populates the enemyList with data from
 	 * EnemyList.txt
 	 */
-	EnemyGenerator(ItemGenerator ig) {
+	private EnemyGenerator(ItemGenerator ig) {
 		this.ig = ig;
-		try {
-			Scanner read = new Scanner(new File("EnemyList.txt"));
-			do {
-				String line = read.nextLine();
-				String[] enemy = line.split(",");
-				if (enemy[2].equals("n")) {
-					enemyList.add(new Enemy(enemy[0], 1, (int) (enemy[1].charAt(0)) - 48, this.ig.generateItem()));
-				} else {
-					enemyList.add(new ForceEnemy(enemy[0], 1, (int) (enemy[1].charAt(0)) - 48, this.ig.generateItem()));
-				}
-			} while (read.hasNext());
-			read.close();
-		} catch (FileNotFoundException fnf) {
-			System.out.println("File was not found");
-		}
+	}
 
+	public static EnemyGenerator getInstance(ItemGenerator ig) {
+		if (instance == null) {
+			instance = new EnemyGenerator(ig);
+		}
+		return instance;
 	}
 
 	/**
@@ -49,14 +36,83 @@ public class EnemyGenerator {
 	 * 
 	 * @return enemy
 	 */
-	Enemy generateEnemy() {
+	Enemy generateEnemy(int lvl) {
 		Random randomEnemy = new Random();
-		int index = randomEnemy.nextInt(enemyList.size());
-		String eName = enemyList.get(index).getName();
-		int eLevel = enemyList.get(index).getLevel();
-		int eMaxHP = enemyList.get(index).getMaxHP();
-		
-		Enemy enemy = new Enemy(eName,eLevel,eMaxHP, ig.generateItem());
+		int index = randomEnemy.nextInt(8);
+		Enemy enemy = null;
+		switch (index) {
+			case 0: {
+				enemy = new Rodian(lvl, ig.generateItem());
+				for(int i = 1; i < lvl; i++) {
+					enemy = new Fighter(enemy);
+				}
+				break;
+			}
+			case 1: {
+				enemy = new Rodian(lvl, ig.generateItem());
+
+				for(int i = 1; i < lvl; i++) {
+
+					enemy = new ForceUser(enemy);
+				}
+				break;
+			}
+			case 2: {
+				enemy = new Geonosian(lvl, ig.generateItem());
+
+				for(int i = 1; i < lvl; i++) {
+
+					enemy = new Fighter(enemy);
+				}
+				break;
+			}
+			case 3: {
+				enemy = new Geonosian(lvl, ig.generateItem());
+
+				for(int i = 1; i < lvl; i++) {
+
+					enemy = new ForceUser(enemy);
+				}
+				break;
+			}
+			case 4: {
+				enemy = new Dathomiri(lvl, ig.generateItem());
+
+				for(int i = 1; i < lvl; i++) {
+
+					enemy = new Fighter(enemy);
+				}
+				break;
+			}
+			case 5: {
+				enemy = new Dathomiri(lvl, ig.generateItem());
+
+				for(int i = 1; i < lvl; i++) {
+
+					enemy = new ForceUser(enemy);
+				}
+				break;
+			}
+			case 6: {
+				enemy = new Twilek(lvl, ig.generateItem());
+
+				for(int i = 1; i < lvl; i++) {
+
+					enemy = new Fighter(enemy);
+				}
+				break;
+			}
+			case 7: {
+				enemy = new Twilek(lvl, ig.generateItem());
+
+				for(int i = 1; i < lvl; i++) {
+
+					enemy = new ForceUser(enemy);
+				}
+				break;
+			}
+		}
+
 		return enemy;
 	}
 }

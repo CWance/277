@@ -167,7 +167,6 @@ public class Hero extends Entity implements Force {
 				displayItems();
 				int choose = CheckInput.getIntRange(1, 5);
 				System.out.println("You drop a " + items.get(choose).getName());
-				System.out.println("You pick up a " + i.getName());
 				items.set(choose - 1, i);
 
 				break;
@@ -179,8 +178,7 @@ public class Hero extends Entity implements Force {
 			}
 
 		} else {
-			System.out.println("You pick up a " + i.getName());
-
+			
 			items.add(i);
 		}
 		return true;

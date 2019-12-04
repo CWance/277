@@ -1,7 +1,16 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 
 /**
  * Makes a Map class that holds 25 different characters and boolean values
@@ -20,16 +29,26 @@ public class Map {
 	 * A Boolean 2D array that shows if the Hero moved to this spaace yet
 	 */
 	private boolean[][] revealed;
-
+	
+	//An instance of Map
+	private static Map instance = null;
+	
 	/**
 	 * Constructs a Map object
 	 */
-	Map() {
+	private Map() {
 		map = new char[5][5];
 		revealed = new boolean[5][5];
 
 	}
 
+	public static Map getInstance() {
+		if( instance == null ) {
+			instance = new Map();
+		}
+		return instance;
+	}
+	
 	/**
 	 * Loads a map from one of the map files
 	 * 
@@ -56,7 +75,7 @@ public class Map {
 				for (int j = 0; j < 5; j++) {
 					map[index][j] = line.charAt(2 * j);
 					revealed[index][j] = false;
-				}
+					}
 				index++;
 
 			} while (read.hasNext());
@@ -133,4 +152,6 @@ public class Map {
 	void removeCharAtLoc(Point p) {
 		map[p.x][p.y] = 'n';
 	}
+	
+	
 }

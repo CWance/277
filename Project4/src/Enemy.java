@@ -6,7 +6,7 @@ import java.util.Random;
  * @author Christian Wance 012306864
  *
  */
-class Enemy extends Entity {
+abstract class Enemy extends Entity {
 
 	/**
 	 * An Item held by the Enemy
@@ -32,12 +32,7 @@ class Enemy extends Entity {
 	 * @param e Entity The Entity being attacked
 	 */
 	@Override
-	void attack(Entity e) {
-		Random damage = new Random();
-		int dam = damage.nextInt(getLevel() + 1 * damage.nextInt(getLevel())) + 1;
-		e.takeDamage(dam);
-		System.out.println(getName() + " attacks " + e.getName() + " for " + dam + " damage.");
-	}
+	abstract void attack(Entity e);
 
 	/**
 	 * Gets the item held by the enemy
